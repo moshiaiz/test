@@ -1,1 +1,11 @@
-hello
+apiVersion: s3.aws.crossplane.io/v1beta1
+kind: Bucket
+metadata:
+  name: af-moshiko-test
+spec:
+  deletionPolicy: Delete      # Change this to "Orphan" if you want to keep the bucket when the resource is deleted.
+  forProvider:
+    acl: private              # You can change this to other ACL settings as needed.
+    locationConstraint: us-east-1  # Set your preferred AWS region here.
+  providerConfigRef:
+    name: aws-provider        # This refers to the AWS ProviderConfig resource you've defined in your cluster.
